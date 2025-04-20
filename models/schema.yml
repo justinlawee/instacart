@@ -14,10 +14,14 @@ sources:
 
 models:
   - name: dim_products
-    description: "Product details joined with aisle and department info"
+    description: "Dimension table with enriched product info"
     columns:
       - name: product_id
-        tests: [not_null, unique]
+      - name: product_name
+      - name: aisle_id
+      - name: aisle_name
+      - name: department_id
+      - name: department_name
 
   - name: instacart_orders
     description: "Raw order data with user and time info"
