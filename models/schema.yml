@@ -14,7 +14,7 @@ sources:
 
 models:
   - name: dim_products
-    description: "Dimension table with enriched product info"
+    description: "Enriched product dimension with joins → Adds aisle and department names to the products table for better readability."
     columns:
       - name: product_id
       - name: product_name
@@ -30,7 +30,9 @@ models:
         tests: [not_null, unique]
 
   - name: dim_orders
-    description: "Cleaned and renamed version of the orders table."
+    description: | 
+      Cleaned version of orders table 
+      → Renames and standardizes columns from the raw orders table for clarity (e.g., order_dow → order_day_of_week).
     columns:
       - name: order_id
         description: "Unique identifier for each order"
@@ -48,7 +50,7 @@ models:
         description: "Number of days since the previous order"
 
   - name: fct_orders
-    description: "Fact table of orders with aggregated product info"
+    description: "Aggregates order facts → Adds product-level aggregates to each order: total items and how many were reordered."
     columns:
       - name: order_id
         description: "Unique ID for the order"
@@ -68,3 +70,60 @@ models:
         description: "Total products in this order"
       - name: total_reordered
         description: "Number of products that were reordered"
+
+  - name: fct_reorder_training_data
+    description: |
+      Creates ML training dataset
+      → Labels each user-product pair with 1 or 0 depending on whether that product was reordered 
+        in the user’s train order (most recent order among training users only) → used as ML training dataset.
+
+      In the orders.csv file, each order is assigned an eval_set value.
+        - prior → historical orders used for feature engineering.
+        - train → the user’s most recent order, used for training your model.
+        - test → the user’s most recent order, without labels, used for prediction.
+    columns:
+      - name: user_id
+        description: "ID of the user"
+      - name: product_id
+        description: "ID of the product"
+      - name: total_orders
+        description: "How many times the user ordered this product"
+      - name: total_reorders
+        description: "How many times the product was reordered"
+      - name: reorder_rate
+        description: "Average reorder rate"
+      - name: max_order_number
+        description: "User’s latest order number for this product"
+      - name: days_since_last_order
+        description: "Recency of user’s last order of this product"
+      - name: reordered_label
+        description: "Binary label: 1 if reordered in current train order, else 0"
+
+  - name: instacart_training_input
+    description: |
+      Filtered dataset passed into trained model
+      → Filters fct_user_product_features to include only user-product pairs with at least 2 prior orders. 
+        Pairs are then passed into the trained model to generate reorder predictions.
+    columns:
+      - name: user_id
+      - name: product_id
+      - name: total_orders
+      - name: total_reorders
+      - name: reorder_rate
+      - name: max_order_number
+      - name: days_since_last_order
+      - name: reordered_label
+
+  - name: instacart_predictions_output
+    description: |
+      Srores predicted reorder probabilities
+      → Stores predicted reorder probabilities for each user-product pair from the inference set (test users as labeled in orders.csv).
+        (Currently empty — to be populated by the Snowpark ML model.)
+
+    columns:
+      - name: user_id
+      - name: product_id
+      - name: reorder_probability
+        description: "Model-predicted probability of reorder"
+      - name: scored_at
+        description: "Timestamp when prediction was generated"
