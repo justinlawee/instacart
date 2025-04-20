@@ -1,3 +1,10 @@
+-- models/fct_user_product_features.sql
+
+/* 
+Description: Per-user/product reorder history
+→ Aggregates each user-product pair’s order history, including total purchases, reorders, and time since last order.
+*/
+
 SELECT
   prior.user_id,
   prior.product_id,

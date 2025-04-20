@@ -1,5 +1,10 @@
 -- models/dim_products.sql
 
+/* 
+Description: Enriched product dimension with joins
+→ Adds aisle and department names to the products table for better readability.
+*/
+
 SELECT
   p.product_id,
   p.product_name,
