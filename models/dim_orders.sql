@@ -1,5 +1,10 @@
 -- models/dim_orders.sql
 
+/* 
+Description: Cleaned version of orders table
+→ Renames and standardizes columns from the raw orders table for clarity (e.g., order_dow → order_day_of_week).
+*/
+
 SELECT
   order_id,
   user_id,
