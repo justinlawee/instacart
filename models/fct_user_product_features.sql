@@ -1,12 +1,12 @@
 -- models/fct_user_product_features.sql
 
-/* 
+/*
 Description: Per-user/product reorder history
 → Aggregates each user-product pair’s order history, including total purchases, reorders, and time since last order.
 */
 
 SELECT
-  prior.user_id,
+  orders.user_id,
   prior.product_id,
   COUNT(*) AS total_orders,
   SUM(prior.reordered) AS total_reorders,
@@ -17,4 +17,4 @@ FROM {{ source('raw', 'order_products_prior') }} AS prior
 JOIN {{ source('raw', 'orders') }} AS orders
   ON prior.order_id = orders.order_id
 WHERE orders.eval_set = 'prior'
-GROUP BY prior.user_id, prior.product_id
+GROUP BY orders.user_id, prior.product_id
