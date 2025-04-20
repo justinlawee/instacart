@@ -20,7 +20,7 @@ SELECT
   -- label: was this product reordered in the current (train) order?
   CASE WHEN t.product_id IS NOT NULL THEN 1 ELSE 0 END AS reordered_label
 FROM {{ ref('fct_user_product_features') }} f
-JOIN {{ ref('orders') }} o
+JOIN {{ ref('dim_orders') }} o
   ON f.user_id = o.user_id
   AND o.eval_set = 'train'
 LEFT JOIN {{ source('raw', 'order_products_train') }} t
