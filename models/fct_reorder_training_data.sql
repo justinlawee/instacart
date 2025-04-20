@@ -1,3 +1,14 @@
+-- models/fct_reorder_training_data.sql
+
+/* 
+Description: Creates ML training dataset
+→ Labels each user-product pair with 1 or 0 depending on whether that product was reordered in the user’s train order (most recent order among training users only) → used as ML training dataset
+    In the orders.csv file, each order is assigned an eval_set value:
+        1. prior → historical orders used for feature engineering.
+        2. train → the user’s most recent order, used for training your model.
+        3. test → the user’s most recent order, without labels, used for prediction
+*/
+
 SELECT
   f.user_id,
   f.product_id,

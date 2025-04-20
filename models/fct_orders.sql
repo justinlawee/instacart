@@ -1,3 +1,10 @@
+-- models/fct_orders.sql
+
+/* 
+Description: Aggregates order facts
+→ Adds product-level aggregates to each order: total items and how many were reordered.
+*/
+
 SELECT
   o.order_id,
   o.user_id,
