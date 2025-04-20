@@ -11,3 +11,20 @@ sources:
       - name: order_products_prior
       - name: order_products_train
       - name: products
+
+models:
+  - name: dim_products
+    description: "Dimension table with enriched product info"
+    columns:
+      - name: product_id
+      - name: product_name
+      - name: aisle_id
+      - name: aisle_name
+      - name: department_id
+      - name: department_name
+
+  - name: instacart_orders
+    description: "Raw order data with user and time info"
+    columns:
+      - name: order_id
+        tests: [not_null, unique]
