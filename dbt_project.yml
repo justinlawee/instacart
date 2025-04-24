@@ -1,42 +1,46 @@
+# -----------------------------------------------------------------------------
+# Instacart Reorder Prediction
+#
+# This project builds the data transformation layer for an end-to-end AI-powered
+# reorder prediction pipeline using Snowflake. It includes:
+# - Raw Instacart data ingestion and staging
+# - Feature engineering and aggregation using dbt
+# - ML-ready outputs consumed by Snowpark for model training
+#
+# The project is part of a larger AI workflow that also includes:
+# - Model training with Snowpark Python (Random Forest / XGBoost)
+# - Prediction outputs stored in Snowflake
+# - Optional GenAI enrichment with Cortex
+# - Visualization in Snowsight
+# -----------------------------------------------------------------------------
 
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
+# Name of the project
 name: 'instacart'
+
+# Versioning for the project (can match your repo release versioning)
 version: '1.0.0'
+
+# dbt config version (2 is standard for dbt 1.x+)
 config-version: 2
 
-# This setting configures which "profile" dbt uses for this project.
+# Profile name used in profiles.yml for Snowflake connection
 profile: 'default'
 
-# These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
-model-paths: ["models"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+# Directories where dbt looks for different types of resources
+model-paths: ["models"]       # Your main model files (SQL logic)
+analysis-paths: ["analyses"]  # Optional: for ad hoc SQL analyses
+test-paths: ["tests"]         # Custom data quality tests
+seed-paths: ["seeds"]         # Optional: CSVs loaded via dbt seed
+macro-paths: ["macros"]       # Optional: Jinja macros for reusable logic
+snapshot-paths: ["snapshots"] # Optional: historical snapshots (SCD tracking)
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+# Where dbt stores compiled SQL and artifacts
+target-path: "target"
+clean-targets:
   - "target"
   - "dbt_packages"
 
-
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
-
-# In dbt, the default materialization for a model is a view. This means, when you run 
-# dbt run or dbt build, all of your models will be built as a view in your data platform. 
-# The configuration below will override this setting for models in the example folder to 
-# instead be materialized as tables. Any models you add to the root of the models folder will 
-# continue to be built as views. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
-
+# Default model configs (can be overridden in each model)
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
-      +materialized: table
+  instacart:
+    +materialized: table  # Build models as tables by default
