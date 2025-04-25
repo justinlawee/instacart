@@ -182,7 +182,7 @@ instacart-reorder-prediction/
 ```
 ---
 
-## Supporting Materials
+## 🙏 Supporting Materials
 
 - [One-Pager: Context-Aware SQL Copilot for Snowsight](docs/one-pager.md)
 
