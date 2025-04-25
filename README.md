@@ -155,9 +155,9 @@ Empowers developers, students, and independent builders to explore Snowflake’s
 ```plaintext
 instacart-reorder-prediction/
 ├── assets/
-│   └── dashboard_preview.png                 # Snowsight dashboard screenshot
+│   └── dashboard_preview.png                  # Snowsight dashboard screenshot
 │
-├── models/                                   # dbt models for feature engineering and ML prep
+├── models/                                    # dbt models for feature engineering & ML prep
 │   ├── dim_orders.sql
 │   ├── dim_products.sql
 │   ├── fct_orders.sql
@@ -167,18 +167,20 @@ instacart-reorder-prediction/
 │   ├── instacart_predictions_output.sql
 │   └── instacart_training_input.sql
 │
-├── notebooks/
-│   └── Instacart.ipynb                       # Jupyter notebook for local ML model training & inference
+├── notebooks/                                 # Jupyter notebook for local ML model training & inference
+│   └── Instacart.ipynb
 │
-├── snowflake_sql/                            # Snowflake SQL scripts for full pipeline
-│   ├── 01_ingest_instacart_data.sql          # Stage and load CSVs into raw Snowflake tables
-│   ├── 02_dbt_model_run.sql                  # Run dbt transformations
-│   ├── 03_model_upload_and_udf.sql           # (Optional) Upload trained model and define UDFs
-│   ├── 04_local_predictions_to_table.sql     # Upload local predictions to Snowflake
-│   └── 05_model_features_and_dummy_data.sql  # Feature inspection and dummy data examples
+├── snowflake_sql/                             # Snowflake SQL scripts for full pipeline
+│   ├── 01_ingest_instacart_data.sql               # Stage and load CSVs into raw Snowflake tables
+│   ├── 02_dbt_model_run.sql                      # Run dbt transformations
+│   ├── 03_model_upload_and_udf.sql              # (Optional) Upload trained model and define UDFs
+│   ├── 04_local_predictions_to_table.sql        # Upload local predictions to Snowflake
+│   └── 05_model_features_and_dummy_data.sql     # Feature inspection and dummy data examples
 │
 ├── .gitignore
-├── README.md
+├── dbt_project.yml
+├── schema.yml
+└── README.md
 ```
 ## 📌 GitHub Metadata
 
