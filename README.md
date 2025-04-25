@@ -10,12 +10,16 @@ It uses **dbt** for modular feature engineering, trains a **logistic regression 
 The logistic regression model predicts the probability that a user will reorder a given product in their next Instacart order. This enables a variety of high-impact use cases:
 
 - **Personalized Recommendations**
+
 Rank products by reorder probability to suggest top items for each user’s next basket.
 - **Marketing Targeting**
+
 Identify users with high reorder intent and send timely nudges or promotions.
 - **Operational Forecasting**
+
 Use aggregate reorder probabilities to improve inventory planning and fulfillment accuracy.
 - **Analytics & Dashboards**
+
 Visualize reorder likelihood across users, products, or departments to uncover actionable patterns.
 
 ---
