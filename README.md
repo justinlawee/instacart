@@ -141,3 +141,8 @@ instacart-reorder-prediction/
 │
 ├── .gitignore
 ├── README.md
+```
+## 📌 GitHub Metadata
+
+- 🧑‍💻 Author: [Justin Borenstein-Lawee](https://www.linkedin.com/in/justin-borenstein-lawee/)  
+- 🕓 Last Updated: April 2025  
