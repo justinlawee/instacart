@@ -24,9 +24,9 @@ Visualize reorder likelihood across users, products, or departments to uncover a
 
 ---
 
-## 🔮 Live Snowflake Dashboard
+## 📊 Live Snowflake Dashboard
 
-📊 [View Dashboard (Snowsight)](https://app.snowflake.com/kctrqzo/wdb83228/#/instacart-reorder-prediction-dLPdne9M0)  
+[View Dashboard (Snowsight)](https://app.snowflake.com/kctrqzo/wdb83228/#/instacart-reorder-prediction-dLPdne9M0)  
 _(Snowflake login required)_
 
 This dashboard includes:
@@ -130,7 +130,7 @@ This dataset was loaded into Snowflake via CSV upload to a user-created stage (`
 
 ---
 
-## Future Product Ideas Inspired by Project Experience
+## 🔮 Future Product Ideas Inspired by Project Experience
 
 While building this project, I identified two opportunities to further enhance the Snowflake developer experience:
 
