@@ -78,21 +78,21 @@ Milk and yogurt categories show consistently high predicted reorders
 
 ---
 
-📌 How to Run This Project
-# Step 1: Run dbt transformations
+## 📌 How to Run This Project
+Step 1: Run dbt transformations
 dbt run
 
-# Step 2: (Optional) Validate logic
+Step 2: (Optional) Validate logic
 dbt test
 
-# Step 3: Train model locally using sklearn + Jupyter
-#         → export as instacart_model.pkl
+Step 3: Train model locally using sklearn + Jupyter
+         → export as instacart_model.pkl
 
-# Step 4: Upload predictions to Snowflake via UI (Snowsight stage)
+Step 4: Upload predictions to Snowflake via UI (Snowsight stage)
 
-# Step 5: Create instacart_predictions_output view
+Step 5: Create instacart_predictions_output view
 
-# Step 6: Explore live metrics in Snowsight dashboard
+Step 6: Explore live metrics in Snowsight dashboard
 
 ---
 
