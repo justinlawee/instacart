@@ -116,10 +116,28 @@ This dataset was loaded into Snowflake via CSV upload to a user-created stage (`
 
 ```plaintext
 instacart-reorder-prediction/
-├── models/
+├── assets/
+│   └── dashboard_preview.png                 # Snowsight dashboard screenshot
+│
+├── models/                                   # dbt models for feature engineering and ML prep
+│   ├── dim_orders.sql
+│   ├── dim_products.sql
+│   ├── fct_orders.sql
+│   ├── fct_reorder_training_data.sql
+│   ├── fct_user_product_features.sql
+│   ├── instacart_orders.sql
+│   ├── instacart_predictions_output.sql
+│   └── instacart_training_input.sql
+│
 ├── notebooks/
-│   └── Instacart.ipynb
-├── snowflake_sql/
-├── schema.yml
-├── dbt_project.yml
+│   └── Instacart.ipynb                       # Jupyter notebook for local ML model training & inference
+│
+├── snowflake_sql/                            # Snowflake SQL scripts for full pipeline
+│   ├── 01_ingest_instacart_data.sql          # Stage and load CSVs into raw Snowflake tables
+│   ├── 02_dbt_model_run.sql                  # Run dbt transformations
+│   ├── 03_model_upload_and_udf.sql           # (Optional) Upload trained model and define UDFs
+│   ├── 04_local_predictions_to_table.sql     # Upload local predictions to Snowflake
+│   └── 05_model_features_and_dummy_data.sql  # Feature inspection and dummy data examples
+│
+├── .gitignore
 ├── README.md
