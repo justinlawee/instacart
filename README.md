@@ -150,7 +150,7 @@ Introducing a Sandbox Mode would temporarily enable these features with service 
 **Impact:**  
 Empowers developers, students, and independent builders to explore Snowflake’s full AI/ML capabilities and complete end-to-end projects before formalizing enterprise agreements.
 
-> **Next Step:** I plan to expand this project further by incorporating Snowpark ML model training and Cortex GenAI functions once my account upgrade is complete.
+> **Next Step:** I have a capl scheudled a sales representative on 4/28 to explore my options for upgrading my account. I plan to expand this project further by incorporating Snowpark ML model training and Cortex GenAI functions once my account upgrade is complete.
 
 ---
 
