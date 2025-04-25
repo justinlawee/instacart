@@ -52,7 +52,7 @@ This dashboard includes:
 
 - **Model Training (Jupyter):**  
   Trained logistic regression locally on 7.9M user-product pairs  
-  → `model_training/instacart_train_model.ipynb`
+  → **Notebook**: `model_training/instacart_train_model.ipynb`
 
 - **Model Export:**  
   Exported via `joblib` into `instacart_model.pkl`
@@ -116,23 +116,10 @@ This dataset was loaded into Snowflake via CSV upload to a user-created stage (`
 
 ```plaintext
 instacart-reorder-prediction/
-├── dbt/
-│   ├── models/ (features, facts, labels)
-│   └── schema.yml
-│
+├── models/
+├── notebooks/
+│   └── Instacart.ipynb
 ├── snowflake_sql/
-│   ├── 01_ingest_data.sql
-│   ├── 02_dbt_model_run.sql
-│   ├── 03_model_upload_and_udf.sql
-│   ├── 04_local_predictions_to_table.sql
-│   ├── 05_dashboard_views.sql
-│   └── 06_model_summary.sql
-│
-├── model_training/
-│   ├── instacart_train_model.ipynb
-│   └── instacart_model.pkl
-│
-├── assets/
-│   └── dashboard.png
-│
-└── README.md
+├── schema.yml
+├── dbt_project.yml
+├── README.md
