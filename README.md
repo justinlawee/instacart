@@ -157,6 +157,9 @@ instacart-reorder-prediction/
 ├── assets/
 │   └── dashboard_preview.png                  # Snowsight dashboard screenshot
 │
+├── docs/                                      # Documentation and product design artifacts
+│   └── one-pager.md                           # One-pager: Context-Aware SQL Copilot for Snowsight
+│
 ├── models/                                    # dbt models for feature engineering & ML prep
 │   ├── dim_orders.sql
 │   ├── dim_products.sql
@@ -171,17 +174,16 @@ instacart-reorder-prediction/
 │   └── Instacart.ipynb
 │
 ├── snowflake_sql/                             # Snowflake SQL scripts for full pipeline
-│   ├── 01_ingest_instacart_data.sql               # Stage and load CSVs into raw Snowflake tables
-│   ├── 02_dbt_model_run.sql                      # Run dbt transformations
-│   ├── 03_model_upload_and_udf.sql              # (Optional) Upload trained model and define UDFs
-│   ├── 04_local_predictions_to_table.sql        # Upload local predictions to Snowflake
-│   └── 05_model_features_and_dummy_data.sql     # Feature inspection and dummy data examples
-│
-├── .gitignore
-├── dbt_project.yml
-├── schema.yml
-└── README.md
+│   ├── 01_ingest_instacart_data.sql           # Stage and load CSVs into raw Snowflake tables
+│   ├── 02_dbt_model_run.sql                   # Run dbt transformations
+│   ├── 03_model_upload_and_udf.sql            # (Optional) Upload trained model and define UDFs
+│   ├── 04_local_predictions_to_table.sql      # Upload local predictions to Snowflake
+│   └── 05_model_features_and_dummy
 ```
+## Supporting Materials
+
+- [One-Pager: Context-Aware SQL Copilot for Snowsight](docs/one-pager.md)
+
 ## 📌 GitHub Metadata
 
 - 🧑‍💻 Author: [Justin Borenstein-Lawee](https://www.linkedin.com/in/justin-borenstein-lawee/)  
