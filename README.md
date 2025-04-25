@@ -180,9 +180,13 @@ instacart-reorder-prediction/
 │   ├── 04_local_predictions_to_table.sql      # Upload local predictions to Snowflake
 │   └── 05_model_features_and_dummy
 ```
+---
+
 ## Supporting Materials
 
 - [One-Pager: Context-Aware SQL Copilot for Snowsight](docs/one-pager.md)
+
+---
 
 ## 📌 GitHub Metadata
 
