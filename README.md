@@ -98,7 +98,6 @@ Milk and yogurt categories show consistently high predicted reorders
 
 ## 📌 How to Run This Project
 Step 1: Run dbt transformations
-dbt run
 
 Step 2: Train model locally using sklearn + Jupyter
          → export as instacart_model.pkl
