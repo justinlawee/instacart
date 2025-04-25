@@ -28,11 +28,11 @@ profile: 'default'
 
 # Directories where dbt looks for different types of resources
 model-paths: ["models"]       # Your main model files (SQL logic)
-analysis-paths: ["analyses"]  # Optional: for ad hoc SQL analyses
-test-paths: ["tests"]         # Custom data quality tests
-seed-paths: ["seeds"]         # Optional: CSVs loaded via dbt seed
-macro-paths: ["macros"]       # Optional: Jinja macros for reusable logic
-snapshot-paths: ["snapshots"] # Optional: historical snapshots (SCD tracking)
+
+# Manually maintained Snowflake scripts and model training code
+# These folders are not used by dbt directly
+# - model_training/
+# - snowflake_sql/
 
 # Where dbt stores compiled SQL and artifacts
 target-path: "target"
@@ -43,4 +43,5 @@ clean-targets:
 # Default model configs (can be overridden in each model)
 models:
   instacart:
-    +materialized: table  # Build models as tables by default
+    +materialized: table
+    +schema-paths: ["."]
