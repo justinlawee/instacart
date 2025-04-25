@@ -130,6 +130,30 @@ This dataset was loaded into Snowflake via CSV upload to a user-created stage (`
 
 ---
 
+## Future Product Ideas Inspired by Project Experience
+
+While building this project, I identified two opportunities to further enhance the Snowflake developer experience:
+
+### 1. Context-Aware SQL Copilot for Feature Engineering
+A built-in assistant within SQL worksheets that suggests and auto-generates feature engineering queries based on a project’s schema.  
+Example prompts:
+- *"Would you like to add a rolling 3-order average?"*
+- *"Would you like to calculate reorder rates per user?"*
+
+**Impact:**  
+Accelerates ML preparation, lowers SQL barriers, and bridges data warehousing with AI workflows.
+
+### 2. Expanded Sandbox Mode for ML Experimentation
+Trial accounts currently lack access to Snowpark ML and Cortex without scheduling a sales consultation.  
+Introducing a Sandbox Mode would temporarily enable these features with service limits to manage costs.
+
+**Impact:**  
+Empowers developers, students, and independent builders to explore Snowflake’s full AI/ML capabilities and complete end-to-end projects before formalizing enterprise agreements.
+
+> **Next Step:** I plan to expand this project further by incorporating Snowpark ML model training and Cortex GenAI functions once my account upgrade is complete.
+
+---
+
 ## 📁 Project Structure
 
 ```plaintext
