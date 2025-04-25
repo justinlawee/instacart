@@ -65,7 +65,7 @@ This dashboard includes:
 
 ---
 
-💡 Key Insights
+## 💡 Key Insights
 Most predictions score well below 0.5 — a calibrated model that's cautious by design
 
 Only 0.6% of user-product pairs exceed the reorder threshold
