@@ -114,7 +114,7 @@ Step 5: Explore live metrics in Snowsight dashboard
 
 This project uses the open-source **Instacart Online Grocery Shopping Dataset 2017**, published by Instacart on Kaggle:
 
-📦 [Download on Kaggle](https://www.kaggle.com/datasets/instacart/instacart-market-basket-analysis)
+📦 [Download on Kaggle](https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset)
 
 The dataset includes:
 - 3M+ grocery orders from ~200K users
