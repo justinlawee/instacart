@@ -130,7 +130,7 @@ This dataset was loaded into Snowflake via CSV upload to a user-created stage (`
 
 While building this project, I identified two opportunities to further enhance the Snowflake developer experience:
 
-### 1. Context-Aware SQL Copilot for Feature Engineering
+### 1. [Context-Aware SQL Copilot for Feature Engineering](https://github.com/justinlawee/instacart-reorder-prediction/blob/main/docs/one-pager.md)
 A built-in assistant within SQL worksheets that suggests and auto-generates feature engineering queries based on a project’s schema.  
 Example prompts:
 - *"Would you like to add a rolling 3-order average?"*
