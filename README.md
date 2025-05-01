@@ -137,6 +137,35 @@ GitHub limits file uploads to 100MB, so the following large files are **excluded
 | `order_products__prior.csv`  | ~180MB        |
 | `instacart_training_input.csv` | ~260MB       | Exported from Snowflake after running dbt |
 
+### 📥 How to Generate `instacart_training_input.csv`
+
+This file is **not included** in the repo due to its size (~260MB), but it's essential for model training and the Streamlit app.
+
+To generate it:
+
+1. Ensure your dbt environment is configured and connected to Snowflake
+2. Run the model using:
+
+```bash
+dbt run --select instacart_training_input
+```
+
+3. In [Snowsight](https://app.snowflake.com), run:
+
+```sql
+SELECT * FROM RAW.instacart_training_input;
+```
+
+4. Use the download icon in Snowsight to export the result as CSV
+
+5. Save it to:
+
+```
+original_files/instacart_training_input.csv
+```
+
+Once saved, the Streamlit app and model pipeline will work as expected.
+
 These files are essential for full pipeline execution and should be downloaded manually from Kaggle.
 
 ---
