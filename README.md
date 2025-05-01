@@ -140,6 +140,8 @@ Step 4: Create instacart_predictions_output view
 
 Step 5: Explore live metrics in Snowsight dashboard
 
+Step 6: Launch Streamlit app locally to browse predictions
+
 ---
 
 ## 🗂️ Raw Dataset Source
