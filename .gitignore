@@ -24,10 +24,14 @@ instacart_model.pkl
 predicted_reorders.csv
 orders.csv
 order_products__prior.csv
+instacart_training_input.csv
 
 # Data files
 original_files/order_products__prior.csv
 original_files/orders.csv
 original_files/predicted_reorders.csv
+original_files/instacart_training_input.csv
+
 
 .env
+original_files/instacart_training_input.csv
