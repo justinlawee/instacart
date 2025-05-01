@@ -4,6 +4,8 @@ This project builds a complete **AI-powered reorder prediction pipeline** on **S
 
 It uses **dbt** for modular feature engineering, trains a **logistic regression model** locally using `scikit-learn`, and exports real predictions into Snowflake. The results are visualized interactively using native Snowflake tools — demonstrating what a productized ML workflow can look like inside the modern data stack.
 
+A local **Streamlit app** is also included for exploring predictions by user and product, adjusting thresholds, and uploading CSVs for batch inference.
+
 ---
 
 ## 💪🏼 What This Model Can Do
@@ -53,13 +55,14 @@ This dashboard includes:
 
 ## 🧱 Project Stack & Tools
 
-| Component        | Tool Used                     |
-|------------------|-------------------------------|
-| Data Warehouse   | **Snowflake** (INSTACART_DB)  |
-| Modeling         | **dbt** (modular SQL pipelines) |
-| ML               | **Python (sklearn)**          |
-| Inference        | Local batch + `.pkl` upload   |
-| Visualization    | **Snowsight** (Snowflake native) |
+| Component        | Tool Used                                |
+|------------------|--------------------------------------------|
+| Data Warehouse   | **Snowflake** (`INSTACART_DB`)             |
+| Modeling         | **dbt** (SQL transformations)              |
+| ML Training      | **scikit-learn** (logistic regression)     |
+| Inference        | Local batch scoring (`.pkl` model)         |
+| Dashboard        | **Snowsight** (Snowflake-native UI)        |
+| App Interface    | **Streamlit** (local UI for predictions & exploration) |
 
 ---
 
@@ -80,6 +83,35 @@ This dashboard includes:
 
 - **Dashboard View:**  
   `RAW.instacart_predictions_output` used to unify scoring logic and power dashboard
+
+  - **Streamlit App:**  
+  Local app for exploring predictions by user and product, adjusting thresholds, and running batch CSV inference
+
+---
+
+## 💻 Streamlit App
+
+This project includes a **local Streamlit interface** for exploring reorder predictions interactively.
+
+### 🔍 Key Features
+
+- Select a **user ID** and view predicted reorder probabilities for previously ordered products  
+- Adjust the **prediction threshold** and visualize whether a reorder is likely  
+- View product details including **aisle** and **department**  
+- Explore **reorder timelines** and **input features** that influenced the prediction  
+- Upload a CSV for **batch prediction** using the trained model  
+
+### ▶️ How to Run Locally
+
+From the project root directory:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+This will launch the app in your browser at `http://localhost:8501`.
+
+> The app loads data from your local CSV files and uses `instacart_model.pkl` for inference.
 
 ---
 
@@ -112,19 +144,47 @@ Step 5: Explore live metrics in Snowsight dashboard
 
 ## 🗂️ Raw Dataset Source
 
-This project uses the open-source **Instacart Online Grocery Shopping Dataset 2017**, published by Instacart on Kaggle:
+This project uses the open-source **Instacart Online Grocery Shopping Dataset 2017**, which includes:
 
-📦 [Download on Kaggle](https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset)
+- Over **3 million grocery orders** from ~200,000 users  
+- **50,000+ unique products** across **130 aisles**  
+- Complete **user–product order history**  
+- Metadata for products, departments, and aisles  
 
-The dataset includes:
-- 3M+ grocery orders from ~200K users
-- 50K+ unique products across ~130 aisles
-- Full user–product order history
-- Product/department metadata
+The data was ingested into **Snowflake** via a user-created stage (`instacart_stage`) using standard `COPY INTO` commands.
 
-This dataset was loaded into Snowflake via CSV upload to a user-created stage (`instacart_stage`) and ingested using `COPY INTO` commands during project setup.
+📦 **Dataset URL**  
+[Kaggle: Instacart Online Grocery Shopping Dataset](https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset)
 
 ---
+
+### ⚠️ Large Files Not Included in This Repo
+
+GitHub limits file uploads to 100MB, so the following large files are **excluded**:
+
+| File                         | Approx. Size |
+|------------------------------|---------------|
+| `predicted_reorders.csv`     | ~250MB        |
+| `order_products__prior.csv`  | ~180MB        |
+
+These files are essential for full pipeline execution and should be downloaded manually from Kaggle.
+
+---
+
+### 📥 Setup Instructions
+
+1. Download and unzip the dataset from Kaggle.
+
+2. Place the following files in your local `original_files/` directory:
+
+```plaintext
+original_files/
+├── aisles.csv
+├── departments.csv
+├── order_products__prior.csv
+├── order_products__train.csv
+├── orders.csv
+├── products.csv
 
 ## 🔮 Future Product Ideas Inspired by Project Experience
 
@@ -168,17 +228,35 @@ instacart-reorder-prediction/
 │   ├── fct_user_product_features.sql
 │   ├── instacart_orders.sql
 │   ├── instacart_predictions_output.sql
-│   └── instacart_training_input.sql
+│   ├── instacart_training_input.sql
+│   └── schema.yml
 │
-├── notebooks/                                 # Jupyter notebook for local ML model training & inference
-│   └── Instacart.ipynb
+├── notebooks/
+│   └── Instacart.ipynb                        # Jupyter notebook for local model training
 │
-├── snowflake_sql/                             # Snowflake SQL scripts for full pipeline
-│   ├── 01_ingest_instacart_data.sql           # Stage and load CSVs into raw Snowflake tables
+├── original_files/                            # Raw dataset CSVs from Kaggle
+│   ├── aisles.csv
+│   ├── departments.csv
+│   ├── order_products__train.csv
+│   └── products.csv
+│
+├── snowflake_sql/                             # Snowflake SQL scripts for pipeline setup
+│   ├── 01_ingest_instacart_data.sql           # Stage and load raw CSVs
 │   ├── 02_dbt_model_run.sql                   # Run dbt transformations
-│   ├── 03_model_upload_and_udf.sql            # (Optional) Upload trained model and define UDFs
-│   ├── 04_local_predictions_to_table.sql      # Upload local predictions to Snowflake
-│   └── 05_model_features_and_dummy
+│   ├── 03_model_upload_and_udf.sql            # (Optional) Create UDFs from model
+│   ├── 04_local_predictions_to_table.sql      # Upload predictions to Snowflake
+│   └── 05_model_features_and_dummy_output.sql # Final view logic and risk labeling
+│
+├── snowpark/                                  # Local ML logic (Snowpark-ready structure)
+│   ├── local_train.py
+│   └── model_training.py
+│
+├── streamlit_app.py                           # Public-facing UI for prediction browsing
+├── instacart_model.pkl                        # Exported logistic regression model
+├── dbt_project.yml                            # dbt configuration
+├── .env.example                               # Sample env config for Snowflake/Streamlit
+├── .gitignore
+└── README.md                                  # Project documentation (this file)
 ```
 ---
 
@@ -192,5 +270,3 @@ instacart-reorder-prediction/
 
 - 🧑‍💻 Author: [Justin Borenstein-Lawee](https://www.linkedin.com/in/justin-borenstein-lawee/)  
 - 🕓 Last Updated: April 2025  
-
-<!-- Force update --> 
