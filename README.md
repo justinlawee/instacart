@@ -165,6 +165,7 @@ original_files/
 ### 📥 How to Generate `instacart_training_input.csv`
 
 1. Ensure your dbt environment is configured and connected to Snowflake
+
 2. Run the model using:
 ```bash
 dbt run --select instacart_training_input
@@ -179,7 +180,6 @@ SELECT * FROM RAW.instacart_training_input;
 ```
 original_files/instacart_training_input.csv
 ```
-
 Once saved, the Streamlit app will work as expected.
 
 These files are essential for full pipeline execution and should be downloaded manually from Kaggle.
