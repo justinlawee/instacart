@@ -182,8 +182,6 @@ original_files/instacart_training_input.csv
 ```
 Once saved, the Streamlit app will work as expected.
 
-These files are essential for full pipeline execution and should be downloaded manually from Kaggle.
-
 ---
 
 ## 🔮 Future Product Ideas Inspired by Project Experience
