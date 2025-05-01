@@ -22,5 +22,12 @@ tests/
 # Project outputs
 instacart_model.pkl
 predicted_reorders.csv
+orders.csv
+order_products__prior.csv
+
+# Data files
+original_files/order_products__prior.csv
+original_files/orders.csv
+original_files/predicted_reorders.csv
 
 .env

@@ -6,10 +6,6 @@ description: |
   → Includes documentation for dimensional, fact, and ML-specific models.
 
 version: 2
-...
-
-
-version: 2
 
 sources:
   - name: raw
