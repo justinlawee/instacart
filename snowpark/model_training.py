@@ -4,14 +4,19 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 
 # Step 1: Connect to Snowflake
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 connection_parameters = {
-    "account": "KCTRQZO-WDB83228",
-    "user": "JBORENSTEINLAWEE",
-    "authenticator": "externalbrowser",
-    "role": "ACCOUNTADMIN",
-    "warehouse": "INSTACART",
-    "database": "INSTACART_DB",
-    "schema": "RAW"
+    "account": os.getenv("SNOWFLAKE_ACCOUNT"),
+    "user": os.getenv("SNOWFLAKE_USER"),
+    "authenticator": os.getenv("SNOWFLAKE_AUTHENTICATOR"),
+    "role": os.getenv("SNOWFLAKE_ROLE"),
+    "warehouse": os.getenv("SNOWFLAKE_WAREHOUSE"),
+    "database": os.getenv("SNOWFLAKE_DATABASE"),
+    "schema": os.getenv("SNOWFLAKE_SCHEMA")
 }
 
 session = Session.builder.configs(connection_parameters).create()

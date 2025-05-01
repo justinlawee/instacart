@@ -6,6 +6,18 @@ Description: Interactive reorder prediction UI for Instacart dataset
 → Includes product metadata, reorder timeline visualization, threshold adjustment, and batch CSV prediction.
 """
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load environment variables from .env file
+
+aws_key = os.getenv("AWS_KEY_ID")
+aws_secret = os.getenv("AWS_SECRET_KEY")
+
+# Example print (for testing only — remove in real code)
+print(f"AWS KEY: {aws_key[:4]}...")  # Show just prefix
+
+
 import streamlit as st
 import pandas as pd
 import joblib

@@ -23,3 +23,5 @@ tests/
 instacart_model.pkl
 predicted_reorders.csv
 
+.env
+.env
