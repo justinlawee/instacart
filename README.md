@@ -82,6 +82,9 @@ This dashboard includes:
 - **Dashboard View:**  
   `RAW.instacart_predictions_output` used to unify scoring logic and power dashboard
 
+- **Streamlit App:**  
+  Local UI for browsing predictions, visualizing features, and running batch inference
+
 ---
 
 ## 💡 Key Insights
@@ -108,6 +111,11 @@ Step 3: Upload predictions to Snowflake via UI (Snowsight stage)
 Step 4: Create instacart_predictions_output view
 
 Step 5: Explore live metrics in Snowsight dashboard
+
+Step 6: Launch the local Streamlit app to browse predictions by user
+```bash
+streamlit run streamlit_app.py
+```
 
 ---
 
