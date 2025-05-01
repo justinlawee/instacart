@@ -145,17 +145,13 @@ To generate it:
 
 1. Ensure your dbt environment is configured and connected to Snowflake
 2. Run the model using:
-
 ```bash
 dbt run --select instacart_training_input
 ```
-
 3. In [Snowsight](https://app.snowflake.com), run:
-
 ```sql
 SELECT * FROM RAW.instacart_training_input;
 ```
-
 4. Use the download icon in Snowsight to export the result as CSV
 
 5. Save it to:
@@ -184,6 +180,7 @@ original_files/
 ├── order_products__train.csv
 ├── orders.csv
 ├── products.csv
+├── instacart_training_input.csv
 
 ## 🔮 Future Product Ideas Inspired by Project Experience
 
