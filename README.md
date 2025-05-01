@@ -1,10 +1,8 @@
-# 🛒 Instacart Reorder Prediction (Snowflake + dbt + ML + Streamlit)
+# 🛒 Instacart Reorder Prediction (Snowflake + dbt + ML)
 
 This project builds a complete **AI-powered reorder prediction pipeline** on **Snowflake**, transforming raw transaction data into modeled reorder scores and surfacing them through a rich Snowsight dashboard.
 
 It uses **dbt** for modular feature engineering, trains a **logistic regression model** locally using `scikit-learn`, and exports real predictions into Snowflake. The results are visualized interactively using native Snowflake tools — demonstrating what a productized ML workflow can look like inside the modern data stack.
-
-A local **Streamlit app** is also included for exploring predictions by user and product, adjusting thresholds, and uploading CSVs for batch inference.
 
 ---
 
@@ -84,35 +82,6 @@ This dashboard includes:
 - **Dashboard View:**  
   `RAW.instacart_predictions_output` used to unify scoring logic and power dashboard
 
-  - **Streamlit App:**  
-  Local app for exploring predictions by user and product, adjusting thresholds, and running batch CSV inference
-
----
-
-## 💻 Streamlit App
-
-This project includes a **local Streamlit interface** for exploring reorder predictions interactively.
-
-### 🔍 Key Features
-
-- Select a **user ID** and view predicted reorder probabilities for previously ordered products  
-- Adjust the **prediction threshold** and visualize whether a reorder is likely  
-- View product details including **aisle** and **department**  
-- Explore **reorder timelines** and **input features** that influenced the prediction  
-- Upload a CSV for **batch prediction** using the trained model  
-
-### ▶️ How to Run Locally
-
-From the project root directory:
-
-```bash
-streamlit run streamlit_app.py
-```
-
-This will launch the app in your browser at `http://localhost:8501`.
-
-> The app loads data from your local CSV files and uses `instacart_model.pkl` for inference.
-
 ---
 
 ## 💡 Key Insights
@@ -140,8 +109,6 @@ Step 4: Create instacart_predictions_output view
 
 Step 5: Explore live metrics in Snowsight dashboard
 
-Step 6: Launch Streamlit app locally to browse predictions
-
 ---
 
 ## 🗂️ Raw Dataset Source
@@ -168,6 +135,7 @@ GitHub limits file uploads to 100MB, so the following large files are **excluded
 |------------------------------|---------------|
 | `predicted_reorders.csv`     | ~250MB        |
 | `order_products__prior.csv`  | ~180MB        |
+| `instacart_training_input.csv` | ~260MB       | Exported from Snowflake after running dbt |
 
 These files are essential for full pipeline execution and should be downloaded manually from Kaggle.
 
@@ -240,6 +208,7 @@ instacart-reorder-prediction/
 │   ├── aisles.csv
 │   ├── departments.csv
 │   ├── order_products__train.csv
+│   ├── predicted_reorders.csv
 │   └── products.csv
 │
 ├── snowflake_sql/                             # Snowflake SQL scripts for pipeline setup
@@ -254,6 +223,7 @@ instacart-reorder-prediction/
 │   └── model_training.py
 │
 ├── streamlit_app.py                           # Public-facing UI for prediction browsing
+├── instacart_model.pkl                        # Exported logistic regression model
 ├── dbt_project.yml                            # dbt configuration
 ├── .env.example                               # Sample env config for Snowflake/Streamlit
 ├── .gitignore
