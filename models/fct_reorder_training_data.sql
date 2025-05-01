@@ -9,6 +9,12 @@ Description: Creates ML training dataset
         3. test → the user’s most recent order, without labels, used for prediction
 */
 
+WITH train_orders AS (
+  SELECT order_id, user_id
+  FROM {{ ref('dim_orders') }}
+  WHERE eval_set = 'train'
+)
+
 SELECT
   f.user_id,
   f.product_id,
@@ -20,9 +26,7 @@ SELECT
   -- label: was this product reordered in the current (train) order?
   CASE WHEN t.product_id IS NOT NULL THEN 1 ELSE 0 END AS reordered_label
 FROM {{ ref('fct_user_product_features') }} f
-JOIN {{ ref('dim_orders') }} o
-  ON f.user_id = o.user_id
-  AND o.eval_set = 'train'
+JOIN train_orders o ON f.user_id = o.user_id
 LEFT JOIN {{ source('raw', 'order_products_train') }} t
   ON o.order_id = t.order_id
   AND f.product_id = t.product_id

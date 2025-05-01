@@ -1,5 +1,25 @@
 # you shouldn't commit these into source control
-# these are the default directory names, adjust/add to fit your needs
+
+# Python
+__pycache__/
+*.pyc
+*.pkl
+.DS_Store
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+
+# dbt build/output
 target/
 dbt_packages/
-logs/
+snapshots/
+analyses/
+tests/
+
+# Project outputs
+instacart_model.pkl
+predicted_reorders.csv
+

@@ -1,3 +1,14 @@
+# models/schema.yml
+
+description: |
+  Description: Metadata and tests for Instacart data models
+  → Defines raw sources and column-level metadata for curated models used in feature engineering and prediction.
+  → Includes documentation for dimensional, fact, and ML-specific models.
+
+version: 2
+...
+
+
 version: 2
 
 sources:
